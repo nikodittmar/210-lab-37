@@ -1,20 +1,23 @@
 // COMSC 210 | Lab 37 | Niko Dittmar
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 int sum_ascii(const string&);
 
 int main() {
-    char a = 'A';
-    cout << a << endl;
-    cout << (int) a << endl;
-    int b = 66;
-    cout << b << endl;
-    cout << (char) b << endl;
+    ifstream infile("lab-37-data.txt");
 
-    cout << sum_ascii("Hello World") << endl;
-    cout << sum_ascii("Hello World!") << endl;
-    cout << sum_ascii("A") << endl;
+    string line;
+    long long total = 0;
+
+    while (getline(infile, line)) {
+        total += sum_ascii(line);
+    }
+
+    infile.close();
+
+    cout << "Total Sum:" << total << endl;
 
     return 0;
 }
