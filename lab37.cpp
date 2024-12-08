@@ -21,16 +21,50 @@ int main() {
 
     infile.close();
 
-    int count = 0;
-    for (const auto& entry : hash_table) {
-        if (count >= 100) break;
-        cout << "Hash Index: " << entry.first << ", Codes: ";
-        for (const string& code : entry.second) {
-            cout << code << " ";
+    int choice;
+    do {
+        cout << "\n####### LAB 38 MENU #######\n";
+        cout << "[1] Print first 100 entries\n";
+        cout << "[2] Search for a key\n";
+        cout << "[3] Add a key\n";
+        cout << "[4] Remove a key\n";
+        cout << "[5] Modify a key\n";
+        cout << "[6] Exit Program\n";
+        cout << "Your choice --> ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                int count = 0;
+                for (const auto& entry : hash_table) {
+                    if (count >= 100) break;
+                    cout << "Hash Index: " << entry.first << ", Codes: ";
+                    for (const string& code : entry.second) {
+                        cout << code << " ";
+                    }
+                    cout << endl;
+                    count++;
+                }
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                cout << "Exiting program. Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
         }
-        cout << endl;
-        count++;
-    }
+    } while (choice != 6);
 
     return 0;
 }
@@ -53,3 +87,5 @@ These targets are present in the dataset and can be used for testing:
 666D109AA22E
 E1D2665B21EA
 */
+
+
