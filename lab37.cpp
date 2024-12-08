@@ -1,36 +1,49 @@
 // COMSC 210 | Lab 37 | Niko Dittmar
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <list>
 using namespace std;
 
-int sum_ascii(const string&);
+int gen_hash_index(const string&);
 
 int main() {
     ifstream infile("lab-37-data.txt");
 
+    map<int, list<string> > hash_table;
+
     string line;
-    long long total = 0;
 
     while (getline(infile, line)) {
-        total += sum_ascii(line);
+        int hash_index = gen_hash_index(line);
+        hash_table[hash_index].push_back(line);
     }
 
     infile.close();
 
-    cout << "Total Sum:" << total << endl;
+    int count = 0;
+    for (const auto& entry : hash_table) {
+        if (count >= 100) break;
+        cout << "Hash Index: " << entry.first << ", Codes: ";
+        for (const string& code : entry.second) {
+            cout << code << " ";
+        }
+        cout << endl;
+        count++;
+    }
 
     return 0;
 }
 
-// sum_ascii() calculates the sum of the ASCII values of a strings characters.
-// arguments: str - the string to calculate ASCII sum.
-// returns: sum of ASCII values in str.
-int sum_ascii(const string& str) {
+// gen_hash_index() calculates the hash index of a string.
+// arguments: str - the string to calculate hash index.
+// returns: hash index.
+int gen_hash_index(const string& str) {
     int sum = 0;
     for (char c : str) {
         sum += (int)c;
     }
-    return sum;
+    return sum % 97;
 }
 
 /* 
